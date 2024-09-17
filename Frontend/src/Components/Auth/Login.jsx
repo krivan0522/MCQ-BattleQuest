@@ -4,9 +4,10 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import '../Style/Signup.css';
 import loginPhoto from '../Images/login_page.png';
 import { login } from '../Integrate/api';
+import { useAuth } from '../Context/AuthContext';
 const Login = () => {
   const navigate = useNavigate();
-
+  const { loginContext } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -15,6 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email,password); // Assuming login function is async
+      await loginContext(email);
       setMessage('Login successful!');
       navigate('/');
     } catch (error) {

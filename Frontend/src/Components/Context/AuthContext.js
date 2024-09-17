@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = (email) => {
+  const loginContext = (email) => {
     // Simulate login logic (API call, etc.)
     setIsLoggedIn(true);
     setUserEmail(email);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userEmail, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, userEmail, loginContext, logout }}>
       {children}
     </AuthContext.Provider>
   );
