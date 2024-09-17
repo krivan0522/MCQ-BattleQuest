@@ -17,7 +17,7 @@ const roomFriendGames = require('./routes/roomFriendGameRoutes');
 const accuracyRoomRoutes = require('./routes/AccuracyRoomRoutes');
 
 const corsOptions = {
-  origin: "https://your-frontend-domain.com", 
+  origin: "https://mcq-battlequest.onrender.com/", 
   methods: ["GET", "POST", "PUT", "DELETE"], 
   credentials: true 
 };
@@ -59,7 +59,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO with the HTTP server
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000", // Allow frontend to connect
+    origin: "https://mcq-battlequest-1.onrender.com", // Allow frontend to connect
     methods: ["GET", "POST"]
   }
 });
