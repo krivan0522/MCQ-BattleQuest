@@ -18,7 +18,7 @@ const accuracyRoomRoutes = require('./routes/AccuracyRoomRoutes');
 
 const app = express();
 app.use(express.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(cors());
 
 const dotenv = require('dotenv');     // for .env file
