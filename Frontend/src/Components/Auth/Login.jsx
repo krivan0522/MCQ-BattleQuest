@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useAuth } from '../Context/AuthContext';
 import '../Style/Signup.css';
 import loginPhoto from '../Images/login_page.png';
-
+import { login } from '../Integrate/api';
 const Login = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -16,7 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(email); // Assuming login function is async
+      await login(email,password); // Assuming login function is async
       setMessage('Login successful!');
       navigate('/');
     } catch (error) {

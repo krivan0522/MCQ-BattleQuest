@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Table, Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://mcq-battlequest-1.onrender.com');
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -21,7 +21,7 @@ const Rooms = () => {
 
     const fetchUsername = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/users/user/${userEmail}`);
+        const response = await axios.get(`https://mcq-battlequest-1.onrender.com/users/user/${userEmail}`);
         setUsername(response.data.user.username);
       } catch (error) {
         console.error('Error fetching username:', error);
@@ -57,7 +57,7 @@ const Rooms = () => {
 
   const fetchRooms = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/rooms');
+      const response = await axios.get('https://mcq-battlequest-1.onrender.com/rooms');
       setRooms(response.data);
     } catch (error) {
       setError('Failed to fetch rooms');
@@ -70,7 +70,7 @@ const Rooms = () => {
     const roomData = { roomId, players: [username] };
 
     try {
-      await axios.post('http://localhost:5000/rooms/create', { roomId, username , email});
+      await axios.post('https://mcq-battlequest-1.onrender.com/rooms/create', { roomId, username , email});
       socket.emit('create-room', roomData);
       setNewRoomId('');
       fetchRooms();
@@ -86,7 +86,7 @@ const Rooms = () => {
 
   const handleJoinRoom = async (roomId) => {
     try {
-      await axios.post('http://localhost:5000/rooms/join', { roomId, playerName: username, playerEmail:email });
+      await axios.post('https://mcq-battlequest-1.onrender.com/rooms/join', { roomId, playerName: username, playerEmail:email });
       console.log(roomId, username);
       socket.emit('join-room', {roomId, username});
       // navigate(`/room/${roomId}`); 
@@ -99,10 +99,10 @@ const Rooms = () => {
 
   const handleStartGame = async(roomId) => {
     try{
-    const gameResponse = await axios.get('http://localhost:5000/game');
+    const gameResponse = await axios.get('https://mcq-battlequest-1.onrender.com/game');
     const games = gameResponse.data;
     const randomIndex = Math.floor(Math.random() * games.length);
-    await axios.post('http://localhost:5000/roomFriendGame', {
+    await axios.post('https://mcq-battlequest-1.onrender.com/roomFriendGame', {
         roomId: roomId,
         randomGame: randomIndex
     });

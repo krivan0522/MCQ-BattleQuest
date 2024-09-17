@@ -16,9 +16,16 @@ const Room = require('./models/RoomRandom');
 const roomFriendGames = require('./routes/roomFriendGameRoutes');
 const accuracyRoomRoutes = require('./routes/AccuracyRoomRoutes');
 
+const corsOptions = {
+  origin: "https://your-frontend-domain.com", 
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  credentials: true 
+};
+
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 
 const dotenv = require('dotenv');     // for .env file
 dotenv.config();
