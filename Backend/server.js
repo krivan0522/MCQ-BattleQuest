@@ -16,16 +16,10 @@ const Room = require('./models/RoomRandom');
 const roomFriendGames = require('./routes/roomFriendGameRoutes');
 const accuracyRoomRoutes = require('./routes/AccuracyRoomRoutes');
 
-const corsOptions = {
-  origin: "https://mcq-battlequest.onrender.com/", 
-  methods: ["GET", "POST", "PUT", "DELETE"], 
-  credentials: true 
-};
-
 const app = express();
 app.use(express.json());
 app.use(cors(corsOptions));
-// app.use(cors());
+app.use(cors());
 
 const dotenv = require('dotenv');     // for .env file
 dotenv.config();
@@ -59,7 +53,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO with the HTTP server
 const io = socketIo(server, {
   cors: {
-    origin: "https://mcq-battlequest-1.onrender.com", // Allow frontend to connect
+    origin: "https://mcq-battlequest.onrender.com", // Allow frontend to connect
     methods: ["GET", "POST"]
   }
 });
